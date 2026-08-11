@@ -1,153 +1,326 @@
 # A falsifiable research program
 
-## Problem 1 — realize the corrected class by a simple object
+## Current state of the attack
 
-Construct a perfect complex or monad `E_d` on a principally polarized abelian fourfold such that
+The exploratory program has progressively eliminated several broad ansatzes and reduced the real-multiplication route to a much smaller obstruction problem.
+
+What is now available:
+
+1. the target secant Chern character is understood exactly;
+2. Markman's `W_2` partial-normalization construction already realizes the genus-4 Jacobian secant K-class (arXiv:2502.03415v2, Example 8.2.3);
+3. the local Postnikov calculation in this repository records simplicity and `Ext^{<0}=0` for that transverse model;
+4. scalar-slope semihomogeneous monads cannot supply the previously targeted quadratic common symmetry;
+5. in the non-scalar real-multiplication model, the HKR/Clifford annihilator of Markman's class has dimension exactly eight;
+6. six of those eight directions are ordinary RM deformations;
+7. a smooth-isogeny construction realizes an integral multiple of the RM secant class by a perfect complex with `Ext^{<0}=0` using only deformation-friendly divisor and complete-intersection blocks.
+
+The active frontier is therefore **not** the Chern character. It is the cancellation of two explicit generalized deformation obstructions.
+
+---
+
+## Problem 1 — the exact RM infinitesimal kernel
+
+Let
 
 \[
-[E_d]=V_d
+\beta'=g^*\Theta-\frac q6(g^{-1})^*(\Theta^3)
 \]
 
-for the corrected virtual class in the main README, and such that
+be Markman's real-multiplication secant class for a genus-4 example with a nontrivial norm-one real quadratic unit.
+
+Split
 
 \[
-\operatorname{Hom}(E_d,E_d)=\mathbf C,
+H^1(\mathcal O_X)=U_1\oplus U_2,
 \qquad
-\operatorname{Ext}^{<0}(E_d,E_d)=0.
+\dim U_i=2.
 \]
 
-The naive direct sum of shifted structure sheaves is not acceptable: it has many idempotents and a large obstruction space. The differentials must genuinely couple the codimension-two, codimension-three, and codimension-four terms.
-
-### Current status
-
-The genus-4 Jacobian `W_2` partial-normalization construction in [`jacobian-w2-construction.md`](jacobian-w2-construction.md) realizes the corrected Chern character by one explicit integral perfect complex. Under the transverse no-triple-intersection hypotheses, the local Postnikov calculation gives
+The exact exterior-algebra calculation in
+[`real-multiplication-infinitesimal-kernel.md`](real-multiplication-infinitesimal-kernel.md)
+proves
 
 \[
-\operatorname{Hom}(E_d,E_d)=\mathbf C,
+\operatorname{rank}(\mu_{\beta'})=20,
 \qquad
-\operatorname{Ext}^{<0}(E_d,E_d)=0.
+\dim\ker(\mu_{\beta'})=8.
 \]
 
-Thus the original first construction milestone is achieved on this special Jacobian model. Its defect is symmetry, not K-theory realization.
-
-## Problem 2 — introduce quadratic symmetry
-
-Seek a finite group
+Up to the sign convention for the bivector HKR action,
 
 \[
-G\subset X\times\widehat X
+\boxed{
+\ker(\mu_{\beta'})
+=
+\operatorname{Sym}^2(U_1)
+\oplus
+\operatorname{Sym}^2(U_2)
+\oplus
+\langle P_{01}-qB_{01},\ P_{23}-qB_{23}\rangle.
+}
 \]
 
-acting by translation and tensorization, of order on the scale `d^2`, and a `G`-linearization of `E_d`.
-
-A numerically convenient target is
+A `20 x 20` minor provides the uniform rank certificate
 
 \[
-|G|=d(d+1),
+q^8\frac{(\rho-1)^8(\rho+1)^8(\rho^2+1)^8}{\rho^{16}},
 \]
 
-because the expected Euler characteristic
+which is nonzero for the nontrivial real-multiplication situation `rho>0`, `rho != 1`.
+
+### Falsifiable target
+
+For a candidate perfect complex `E` with `ch(E)` a nonzero multiple of `beta'`, prove
 
 \[
-\chi(E_d,E_d)=8d(d+1)
+\ker(at_E)=\ker(\mu_{\beta'}).
 \]
 
-then has quotient `8`. This merely passes a dimension filter; it does not prove that such a group action or object exists.
+The general Atiyah--semiregularity compatibility already gives
 
-### Eliminated sub-ansatz: scalar semihomogeneous monads
+\[
+\ker(at_E)\subseteq\ker(\mu_{\beta'}).
+\]
 
-A natural attempt is to replace the support-permuting `W_2` object by a full-support monad whose terms are simple semihomogeneous bundles of scalar rational slopes `a_i/b_i`.
+So the problem is to force exactly the eight displayed directions into `ker(at_E)`.
 
-This entire termwise-equivariant scalar ansatz fails the quadratic symmetry target. The Chern-character condition is equivalent to the integral binary-quartic identity
+---
+
+## Problem 2 — six ordinary RM directions
+
+The first six annihilators are
+
+\[
+\operatorname{Sym}^2(U_1)\oplus\operatorname{Sym}^2(U_2).
+\]
+
+They are the natural ordinary first-order deformations preserving the two real-multiplication blocks and the polarization.
+
+The smooth-isogeny scaffold in
+[`rm-smooth-isogeny-scaffold.md`](rm-smooth-isogeny-scaffold.md)
+is designed from divisor classes which remain algebraic on this RM PEL locus. It therefore turns these six directions from an accidental hoped-for property of Jacobian gluing data into a geometric design constraint.
+
+### Concrete scaffold
+
+After a sufficiently large multiplication isogeny, take
+
+\[
+\widetilde A=[m]^*g^*\Theta,
+\qquad
+\widetilde C=[m]^*(g^{-1})^*\Theta.
+\]
+
+For a smooth divisor `D` of class `A_tilde`, define
+
+\[
+V_D=
+\mathcal O_D^{\oplus3}
+\oplus\Omega_D^1
+\oplus\Omega_D^2
+\oplus K_D^{\oplus3}.
+\]
+
+Then
+
+\[
+\operatorname{ch}(i_*V_D)=12\widetilde A.
+\]
+
+For a smooth complete-intersection curve `Z` of three divisors of class `C_tilde`, define
+
+\[
+R_Z=\mathcal O_Z\oplus\mathcal O_Z(3\widetilde C).
+\]
+
+Then
+
+\[
+\operatorname{ch}(R_Z)=2\widetilde C^3.
+\]
+
+Hence
+
+\[
+E_m=i_*V_D\oplus R_Z^{\oplus q}[1]
+\]
+
+satisfies
+
+\[
+\operatorname{ch}(E_m)=12[m]^*\beta'
+\]
+
+and, for transverse choices,
+
+\[
+\operatorname{Ext}^{<0}(E_m,E_m)=0.
+\]
+
+Pushing through `[m]` produces a perfect complex with
+
+\[
+\operatorname{ch}([m]_*E_m)=12m^8\beta'
+\]
+
+and an isomorphism-class tensor stabilizer of order `m^8`.
+
+### Falsifiable milestone
+
+Write the construction relatively over the six-dimensional RM infinitesimal base and verify explicitly that the six classes in
+
+\[
+\operatorname{Sym}^2(U_1)\oplus\operatorname{Sym}^2(U_2)
+\]
+
+map to zero under the Atiyah obstruction map.
+
+---
+
+## Problem 3 — the two generalized directions
+
+The only remaining annihilators are
+
+\[
+\boxed{
+P_{01}-qB_{01},
+\qquad
+P_{23}-qB_{23}.
+}
+\]
+
+These mix bivector and `B`-field deformations.
+
+The split smooth-isogeny scaffold does **not** solve them. The cancellation occurs only after adding the divisor and cubic Chern characters. The Atiyah class of a direct sum is block diagonal, so a cancellation at the level of
+
+\[
+\mu_{12A-2qC^3}
+\]
+
+does not imply cancellation of the two individual obstruction classes.
+
+This is now the central construction problem.
+
+### Falsifiable milestone
+
+Construct a coupled perfect complex with the same K-class as
+
+\[
+i_*V_D\oplus R_Z^{\oplus q}[1]
+\]
+
+such that both mixed generalized directions lie in its Atiyah kernel.
+
+Possible mechanisms to test, in order:
+
+1. a non-split Postnikov object whose extension data links the divisor and cubic blocks;
+2. a Fourier--Mukai transform which turns the two blocks into supports admitting nontrivial coupling;
+3. an equivariantization under the isogeny tensor stabilizer;
+4. a modification on a common support where the two mixed Atiyah classes can cancel locally.
+
+Every candidate should be rejected immediately if either mixed direction has a nonzero local obstruction.
+
+---
+
+## Problem 4 — genuine equivariant structure
+
+For
+
+\[
+F_m=[m]_*E_m,
+\]
+
+the kernel
+
+\[
+G_m=\ker([m]^*:\operatorname{Pic}^0(X)\to\operatorname{Pic}^0(X))
+\]
+
+has order `m^8`, and projection formula gives isomorphisms
+
+\[
+F_m\otimes P\simeq F_m,
+\qquad P\in G_m.
+\]
+
+This is only an isomorphism-class stabilizer until the compatibility cocycle is checked.
+
+Perry's 2026 theorem applies directly to perfect complexes with `Ext^{<0}=0`, and its equivariant form permits weak `G`-semiregularity for finite translation--tensorization actions. Thus a genuine linearization here could be valuable even if full ordinary semiregularity is hard.
+
+### Falsifiable milestone
+
+Compute the projective cocycle of the `G_m` action on `F_m`.
+
+- If it is trivial, construct the linearization and compute invariant Ext groups.
+- If it is nontrivial, determine whether a central extension or twisted equivariant category is the correct Perry-compatible replacement.
+
+---
+
+## Problem 5 — discarded or downgraded ansatzes
+
+### `W_2` partial normalization
+
+The K-theory construction is prior art: Markman, arXiv:2502.03415v2, Example 8.2.3. The local derived analysis remains useful, but this model has too little obvious translation symmetry for the earlier large-symmetry design.
+
+### Scalar semihomogeneous monads
+
+The Chern-character problem becomes the binary quartic identity
 
 \[
 s^4+4s^3t-6d s^2t^2-4d st^3+d^2t^4
 =\sum_i c_i(b_i s+a_i t)^4.
 \]
 
-If the common finite intersection of the Mukai stabilizer graphs is `X[N]`, then the first two moments force all slopes to be congruent to slope `1` modulo `N`. The resulting quartic congruences imply a lower bound on `d+1` of at least `(3/2)N^4` in the weakest case, while
+The common scalar torsion congruences force its common stabilizer to remain below the previous target `d(d+1)`. See
+[`semihomogeneous-monad-obstruction.md`](semihomogeneous-monad-obstruction.md).
+
+This does not eliminate non-scalar real multiplication; indeed the current program is precisely exploiting the directions that survive that obstruction.
+
+---
+
+## Problem 6 — connection to formal K-theory
+
+If a coupled RM object is shown semiregular (or weakly equivariantly semiregular in the sense needed by Perry), deform it along the Hodge locus.
+
+Its compatible infinitesimal K-classes should then be compared with the unique `D`-fixed formal lift from the Bloch--Esnault--Kerz calculation in
+[`formal-k-theory.md`](formal-k-theory.md).
+
+A match would connect the explicit geometric object to the formal rigidity route.
+
+---
+
+## Problem 7 — independent hypersurface route
+
+For a primitive Hodge class `alpha`, define
 
 \[
-|X[N]|=N^8.
+\mathcal D_L
+=\operatorname{span}\{\Gamma_Y(C_Y):Y\in|L^d|,\ d\ge1\}.
 \]
 
-Consequently
-
-\[
-|X[N]|<d(d+1).
-\]
-
-See [`semihomogeneous-monad-obstruction.md`](semihomogeneous-monad-obstruction.md) and the accompanying verifier.
-
-This is a no-go for the **design target**, not a theorem that smaller symmetry groups can never be semiregular.
-
-### Surviving symmetry target: non-scalar endomorphisms
-
-The next serious construction should exploit real multiplication. Replace scalar integer pairs `(a,b)` by endomorphism pairs in an order `O_F` of a real quadratic field. The common stabilizer is then controlled by kernels and norms of non-scalar endomorphisms rather than by one integer torsion level `N`; the scalar quartic congruence obstruction does not apply verbatim.
-
-This is aligned with Markman's genus-4 real-multiplication secant examples, where the appropriate semiregularity remains open.
-
-### Falsifiable milestone
-
-For one real quadratic order, preferably the smallest discriminants first:
-
-1. write the analogue of the five Chern moments over `O_F`;
-2. construct a signed semihomogeneous decomposition of the secant class;
-3. compute the common finite stabilizer exactly as a kernel of endomorphisms;
-4. compare its order with `d(d+1)`;
-5. reject the model immediately if the symmetry/Euler quotient remains too large.
-
-## Problem 3 — test equivariant semiregularity
-
-Compute
-
-\[
-\sigma_{E_d}:\operatorname{Ext}^2(E_d,E_d)^G
-\longrightarrow HH_{-2}(X)^G.
-\]
-
-For an abelian fourfold,
-
-\[
-\dim HH_{-2}(X)=6+16+6=28.
-\]
-
-The first necessary check is therefore
-
-\[
-\dim\operatorname{Ext}^2(E_d,E_d)^G\le28.
-\]
-
-The actual requirement is injectivity of the semiregularity map, not merely the dimension inequality.
-
-Perry's 2026 equivariant semiregularity theorem is important here because it applies directly to equivariant perfect complexes; a successful construction need not first be converted into a coherent secant sheaf.
-
-### Falsifiable milestone
-
-Produce the matrix of `sigma_{E_d}` under HKR and verify its rank exactly for one small arithmetic model.
-
-## Problem 4 — connect the object to formal K-theory
-
-If `E_d` is equivariantly semiregular, deform it along the relevant Hodge locus. Its compatible infinitesimal `K_0`-classes must coincide with the unique `D`-fixed formal lift from the Bloch--Esnault--Kerz calculation.
-
-This would supply precisely the compatible perfect object that formal K-theory alone does not produce.
-
-## Problem 5 — the general hypersurface route
-
-For a primitive Hodge class `alpha`, define the span of all defect classes
-
-\[
-\mathcal D_L=
-\operatorname{span}\{\Gamma_Y(C_Y):Y\in|L^d|, d\ge1\}.
-\]
-
-The decisive statement would be
+The decisive statement remains
 
 \[
 H^{2n}(X,\mathbf Q)_{\mathrm{prim}}\cap H^{n,n}
-\subseteq \mathcal D_L.
+\subseteq\mathcal D_L.
 \]
 
-For nodal `Y`, this becomes the construction of a relation among vanishing cycles whose associated defect class pairs nontrivially with `alpha`.
+For nodal `Y`, this is the construction of a relation among vanishing cycles whose defect class pairs nontrivially with `alpha`.
 
-This target is deliberately stated as a concrete spanning problem. It should not be mistaken for a shortcut: proving it may encode most of the original conjecture.
+This route is logically independent of the RM secant-object program and remains available if the final two generalized Atiyah directions prove impossible to cancel.
+
+---
+
+# Immediate next experiment
+
+The highest-value next calculation is now extremely specific:
+
+\[
+\boxed{
+\text{construct a local/derived coupling which kills }
+P_{01}-qB_{01}
+\text{ and }
+P_{23}-qB_{23}.
+}
+\]
+
+A candidate which fails either one is discarded. A candidate which kills both, preserves `Ext^{<0}=0`, and retains a usable finite symmetry would cross the main remaining infinitesimal barrier in the real-multiplication route.
