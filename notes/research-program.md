@@ -2,19 +2,21 @@
 
 ## Current state of the attack
 
-The exploratory program has progressively eliminated several broad ansatzes and reduced the real-multiplication route to a much smaller obstruction problem.
+The real-multiplication route has now become much more sharply constrained.
 
-What is now available:
+Established inside these notes:
 
-1. the target secant Chern character is understood exactly;
-2. Markman's `W_2` partial-normalization construction already realizes the genus-4 Jacobian secant K-class (arXiv:2502.03415v2, Example 8.2.3);
-3. the local Postnikov calculation in this repository records simplicity and `Ext^{<0}=0` for that transverse model;
-4. scalar-slope semihomogeneous monads cannot supply the previously targeted quadratic common symmetry;
-5. in the non-scalar real-multiplication model, the HKR/Clifford annihilator of Markman's class has dimension exactly eight;
-6. six of those eight directions are ordinary RM deformations;
-7. a smooth-isogeny construction realizes an integral multiple of the RM secant class by a perfect complex with `Ext^{<0}=0` using only deformation-friendly divisor and complete-intersection blocks.
+1. the target RM secant Chern character is explicit;
+2. its infinitesimal Chern-action map on `HT^2` has rank exactly `20` and kernel exactly `8` dimensional;
+3. six kernel directions are ordinary RM deformations;
+4. the remaining two are mixed `B`-field/bivector directions;
+5. scalar semihomogeneous monads cannot provide the previously targeted large common torsion symmetry;
+6. ordinary curve elementary transforms cannot kill both mixed directions locally;
+7. ordinary divisor--curve point gluing of the type used in Markman's explicit `E'` candidate also cannot kill both mixed directions in the generic smooth/reduced local model;
+8. the `q=1` specialization has an exact Fourier symmetry: the secant class is Fourier-even while the two mixed directions are Fourier-odd;
+9. a new Kodaira--Spencer vector-bundle construction keeps the pure divisor Chern character while reducing the generic Fourier cohomology profile from `3,11,11,3` to one square `8N x 8N` determinant.
 
-The active frontier is therefore **not** the Chern character. It is the cancellation of two explicit generalized deformation obstructions.
+The active frontier is therefore no longer the Chern character or a local curve correction. It is a **global vector-bundle/Fourier coupling problem on one smooth divisor**.
 
 ---
 
@@ -23,304 +25,309 @@ The active frontier is therefore **not** the Chern character. It is the cancella
 Let
 
 \[
-\beta'=g^*\Theta-\frac q6(g^{-1})^*(\Theta^3)
+\beta'=g^*\Theta-\frac q6(g^{-1})^*(\Theta^3).
 \]
 
-be Markman's real-multiplication secant class for a genus-4 example with a nontrivial norm-one real quadratic unit.
-
-Split
-
-\[
-H^1(\mathcal O_X)=U_1\oplus U_2,
-\qquad
-\dim U_i=2.
-\]
-
-The exact exterior-algebra calculation in
-[`real-multiplication-infinitesimal-kernel.md`](real-multiplication-infinitesimal-kernel.md)
-proves
-
-\[
-\operatorname{rank}(\mu_{\beta'})=20,
-\qquad
-\dim\ker(\mu_{\beta'})=8.
-\]
-
-Up to the sign convention for the bivector HKR action,
+For nontrivial real multiplication, the exact exterior-algebra computation in
+[`rm-semiregularity-kernel.md`](rm-semiregularity-kernel.md) gives
 
 \[
 \boxed{
-\ker(\mu_{\beta'})
-=
-\operatorname{Sym}^2(U_1)
-\oplus
-\operatorname{Sym}^2(U_2)
-\oplus
-\langle P_{01}-qB_{01},\ P_{23}-qB_{23}\rangle.
+\operatorname{rank}(\mu_{\beta'})=20,
+\qquad
+\dim\ker(\mu_{\beta'})=8.
 }
 \]
 
-A `20 x 20` minor provides the uniform rank certificate
+Up to the chosen HKR normalization,
 
 \[
-q^8\frac{(\rho-1)^8(\rho+1)^8(\rho^2+1)^8}{\rho^{16}},
+\ker(\mu_{\beta'})
+=
+\operatorname{Sym}^2(U_+)\oplus\operatorname{Sym}^2(U_-)
+\oplus
+\langle B_+-q^{-1}P_+,\ B_--q^{-1}P_-\rangle.
 \]
 
-which is nonzero for the nontrivial real-multiplication situation `rho>0`, `rho != 1`.
-
-### Falsifiable target
-
-For a candidate perfect complex `E` with `ch(E)` a nonzero multiple of `beta'`, prove
+For any candidate `E` with `ch(E)` a nonzero multiple of `beta'`, semiregularity on the Atiyah image is equivalent to
 
 \[
+\boxed{
 \ker(at_E)=\ker(\mu_{\beta'}).
+}
 \]
 
-The general Atiyah--semiregularity compatibility already gives
-
-\[
-\ker(at_E)\subseteq\ker(\mu_{\beta'}).
-\]
-
-So the problem is to force exactly the eight displayed directions into `ker(at_E)`.
+Thus the target remains: put all eight displayed directions into the Atiyah kernel.
 
 ---
 
-## Problem 2 — six ordinary RM directions
+## Problem 2 — rejected local coherent couplings
 
-The first six annihilators are
+### A. Elementary transforms along curves
+
+The local model
 
 \[
-\operatorname{Sym}^2(U_1)\oplus\operatorname{Sym}^2(U_2).
+I=(y,z)\subset k[[w,x,y,z]]/(w)
 \]
 
-They are the natural ordinary first-order deformations preserving the two real-multiplication blocks and the polarization.
-
-The smooth-isogeny scaffold in
-[`rm-smooth-isogeny-scaffold.md`](rm-smooth-isogeny-scaffold.md)
-is designed from divisor classes which remain algebraic on this RM PEL locus. It therefore turns these six directions from an accidental hoped-for property of Jacobian gluing data into a geometric design constraint.
-
-### Concrete scaffold
-
-After a sufficiently large multiplication isogeny, take
+has
 
 \[
-\widetilde A=[m]^*g^*\Theta,
-\qquad
-\widetilde C=[m]^*(g^{-1})^*\Theta.
+\mathcal Ext^2(I,I)\cong I/I^2.
 \]
 
-For a smooth divisor `D` of class `A_tilde`, define
+The degree-two Atiyah square detects the bivector component before the global `B`-field can cancel it. On a simple RM fourfold, both `P_+` and `P_-` cannot vanish along one transverse correcting curve.
+
+See [`rm-elementary-transform-no-go.md`](rm-elementary-transform-no-go.md).
+
+### B. Markman's divisor--curve fiber gluing
+
+At an ordinary gluing point of a smooth divisor and a smooth curve,
 
 \[
-V_D=
-\mathcal O_D^{\oplus3}
-\oplus\Omega_D^1
-\oplus\Omega_D^2
-\oplus K_D^{\oplus3}.
+M=R/(ab,ac,ad).
 \]
 
-Then
+Its minimal resolution has Betti numbers `1,3,3,1`. The local Atiyah square shows that Atiyah-vanishing for a bivector `P` forces the three-dimensional curve conormal space to be isotropic for `P`.
+
+A three-plane cannot be simultaneously isotropic for both rank-two RM bivectors `P_+` and `P_-` in
 
 \[
-\operatorname{ch}(i_*V_D)=12\widetilde A.
+U_+^*\oplus U_-^*,
+\qquad \dim U_+^*=\dim U_-^*=2.
 \]
 
-For a smooth complete-intersection curve `Z` of three divisors of class `C_tilde`, define
+Therefore the generic smooth/reduced fiber-gluing architecture of Markman's Example 11.2.7 cannot satisfy the remaining semiregularity condition.
+
+See [`markman-eprime-local-gluing-obstruction.md`](markman-eprime-local-gluing-obstruction.md).
+
+**Important:** this rejects a local architecture, not Question 11.2.2 itself.
+
+---
+
+## Problem 3 — the surviving pure-divisor strategy
+
+Let `D` be a smooth sufficiently positive divisor on the abelian fourfold and put
 
 \[
-R_Z=\mathcal O_Z\oplus\mathcal O_Z(3\widetilde C).
+K_D=\mathcal O_D(D).
 \]
 
-Then
+The old split bundle
 
 \[
-\operatorname{ch}(R_Z)=2\widetilde C^3.
-\]
-
-Hence
-
-\[
-E_m=i_*V_D\oplus R_Z^{\oplus q}[1]
+V_D=3\mathcal O_D\oplus\Omega_D^1\oplus\Omega_D^2\oplus3K_D
 \]
 
 satisfies
 
 \[
-\operatorname{ch}(E_m)=12[m]^*\beta'
+\operatorname{ch}(i_*V_D)=12[D],
 \]
 
-and, for transverse choices,
+but its generic degree-zero-twist cohomology profile is
 
 \[
-\operatorname{Ext}^{<0}(E_m,E_m)=0.
+(3,11,11,3)N.
 \]
 
-Pushing through `[m]` produces a perfect complex with
+### Kodaira--Spencer replacement
+
+Choose three first-order deformation classes and form
 
 \[
-\operatorname{ch}([m]_*E_m)=12m^8\beta'
+0\to\mathcal O_D^{\oplus3}\to\mathcal E\to\Omega_D^1\to0.
 \]
 
-and an isomorphism-class tensor stabilizer of order `m^8`.
-
-### Falsifiable milestone
-
-Write the construction relatively over the six-dimensional RM infinitesimal base and verify explicitly that the six classes in
+Then
 
 \[
-\operatorname{Sym}^2(U_1)\oplus\operatorname{Sym}^2(U_2)
+0\to\Omega_D^2\to\Lambda^5\mathcal E\to K_D^{\oplus3}\to0
 \]
 
-map to zero under the Atiyah obstruction map.
-
----
-
-## Problem 3 — the two generalized directions
-
-The only remaining annihilators are
+and
 
 \[
 \boxed{
-P_{01}-qB_{01},
-\qquad
-P_{23}-qB_{23}.
+[\mathcal E]+[\Lambda^5\mathcal E]=[V_D].
 }
 \]
 
-These mix bivector and `B`-field deformations.
-
-The split smooth-isogeny scaffold does **not** solve them. The cancellation occurs only after adding the divisor and cubic Chern characters. The Atiyah class of a direct sum is block diagonal, so a cancellation at the level of
+If the three Kodaira--Spencer maps have maximal generic rank, then
 
 \[
-\mu_{12A-2qC^3}
+(h^0,h^1,h^2,h^3)
+\bigl((\mathcal E\oplus\Lambda^5\mathcal E)\otimes P\bigr)
+=(0,8,8,0)N
 \]
 
-does not imply cancellation of the two individual obstruction classes.
+for general `P in Pic^0(X)`.
 
-This is now the central construction problem.
+See [`rm-kodaira-spencer-divisor-bundle.md`](rm-kodaira-spencer-divisor-bundle.md).
+
+---
+
+## Problem 4 — one final determinant
+
+Seek an extension
+
+\[
+0\to\mathcal E\to W_D\to\mathcal E^\vee\otimes K_D\to0.
+\]
+
+Its K-class remains `[V_D]`, so
+
+\[
+\operatorname{ch}(i_*W_D)=12[D].
+\]
+
+After the outer Kodaira--Spencer cancellation, the only remaining generic map is
+
+\[
+\partial_{\varepsilon,P}:
+H^1(\mathcal E^\vee\otimes K_D\otimes P)
+\longrightarrow
+H^2(\mathcal E\otimes P),
+\]
+
+between two spaces of dimension `8N`.
+
+The immediate target is therefore
+
+\[
+\boxed{
+\det(\partial_{\varepsilon,P})\not\equiv0.
+}
+\]
+
+This is currently the smallest surviving construction problem.
+
+### Why this target is structurally promising
+
+The two `8N` spaces are Serre-dual after `P <-> P^{-1}`. The final extension can therefore be searched for in a self-dual/symplectic or orthogonal subspace of
+
+\[
+H^1(\mathcal E\otimes\mathcal E\otimes K_D^{-1}).
+\]
+
+A single nonzero determinant at one generic `P` proves generic acyclicity of `W_D` under degree-zero twists.
+
+---
+
+## Problem 5 — multiplication-map / infinitesimal-Torelli input
+
+The first maximal-rank requirement is not an isolated phenomenon. For smooth sufficiently positive hypersurfaces in simple abelian varieties, Green's method reduces infinitesimal Torelli to multiplication maps of sections; effective bounds are known.
+
+The next technical task is to express the three Kodaira--Spencer maps in the same Jacobian-ring/multiplication formalism and prove that a general three-dimensional deformation subspace gives the required rank `3N`.
 
 ### Falsifiable milestone
 
-Construct a coupled perfect complex with the same K-class as
+Produce one smooth sufficiently positive `D` and three deformation classes for which
 
 \[
-i_*V_D\oplus R_Z^{\oplus q}[1]
+H^2(\Omega_D^1\otimes P)
+\to
+H^3(\mathcal O_D^{\oplus3}\otimes P)
 \]
 
-such that both mixed generalized directions lie in its Atiyah kernel.
+is generically surjective.
 
-Possible mechanisms to test, in order:
-
-1. a non-split Postnikov object whose extension data links the divisor and cubic blocks;
-2. a Fourier--Mukai transform which turns the two blocks into supports admitting nontrivial coupling;
-3. an equivariantization under the isogeny tensor stabilizer;
-4. a modification on a common support where the two mixed Atiyah classes can cancel locally.
-
-Every candidate should be rejected immediately if either mixed direction has a nonzero local obstruction.
+If this fails, abandon the `3 -> 8` reduction.
 
 ---
 
-## Problem 4 — genuine equivariant structure
+## Problem 6 — the `q=1` Fourier symmetry
 
-For
-
-\[
-F_m=[m]_*E_m,
-\]
-
-the kernel
+Specialize to
 
 \[
-G_m=\ker([m]^*:\operatorname{Pic}^0(X)\to\operatorname{Pic}^0(X))
+q=1,
+\qquad
+\beta=A-\frac16C^3,
 \]
 
-has order `m^8`, and projection formula gives isomorphisms
+with
 
 \[
-F_m\otimes P\simeq F_m,
-\qquad P\in G_m.
+A=g^*\Theta,
+\qquad
+C=(g^{-1})^*\Theta.
 \]
 
-This is only an isomorphism-class stabilizer until the compatibility cocycle is checked.
+The cohomological Poincare Fourier transform satisfies
 
-Perry's 2026 theorem applies directly to perfect complexes with `Ext^{<0}=0`, and its equivariant form permits weak `G`-semiregularity for finite translation--tensorization actions. Thus a genuine linearization here could be valuable even if full ordinary semiregularity is hard.
+\[
+\Phi^H(A)=-\frac16C^3,
+\qquad
+\Phi^H\left(\frac16C^3\right)=-A,
+\]
 
-### Falsifiable milestone
+hence
 
-Compute the projective cocycle of the `G_m` action on `F_m`.
+\[
+\boxed{\Phi^H(\beta)=\beta.}
+\]
 
-- If it is trivial, construct the linearization and compute invariant Ext groups.
-- If it is nontrivial, determine whether a central extension or twisted equivariant category is the correct Perry-compatible replacement.
+Meanwhile the two unresolved directions
+
+\[
+B_+-P_+,
+\qquad
+B_--P_-
+\]
+
+are Fourier-odd.
+
+See [`rm-q1-fourier-symmetry.md`](rm-q1-fourier-symmetry.md).
+
+This remains the only mechanism found so far which separates the two mixed directions *before* the semiregularity map.
+
+### Caveat
+
+A Fourier-generated finite categorical action is outside the clean translation--tensorization special case of Perry's abelian theorem. The general equivariant theorem requires additional categorical/geometric-origin input.
 
 ---
 
-## Problem 5 — discarded or downgraded ansatzes
+## Problem 7 — symmetry by isogeny remains auxiliary
 
-### `W_2` partial normalization
+The smooth-isogeny scaffold still provides arbitrarily large tensor stabilizers after pushforward, but translation/tensorization actions are cohomologically trivial on the two mixed generalized directions. They cannot simply project those directions away.
 
-The K-theory construction is prior art: Markman, arXiv:2502.03415v2, Example 8.2.3. The local derived analysis remains useful, but this model has too little obvious translation symmetry for the earlier large-symmetry design.
+Use isogenies for:
 
-### Scalar semihomogeneous monads
+- positivity and smoothness of divisor constructions;
+- finite symmetry after a successful local/global coupling;
 
-The Chern-character problem becomes the binary quartic identity
-
-\[
-s^4+4s^3t-6d s^2t^2-4d st^3+d^2t^4
-=\sum_i c_i(b_i s+a_i t)^4.
-\]
-
-The common scalar torsion congruences force its common stabilizer to remain below the previous target `d(d+1)`. See
-[`semihomogeneous-monad-obstruction.md`](semihomogeneous-monad-obstruction.md).
-
-This does not eliminate non-scalar real multiplication; indeed the current program is precisely exploiting the directions that survive that obstruction.
+not as a substitute for solving the mixed Atiyah problem.
 
 ---
 
-## Problem 6 — connection to formal K-theory
+## Problem 8 — connection to formal K-theory
 
-If a coupled RM object is shown semiregular (or weakly equivariantly semiregular in the sense needed by Perry), deform it along the Hodge locus.
-
-Its compatible infinitesimal K-classes should then be compared with the unique `D`-fixed formal lift from the Bloch--Esnault--Kerz calculation in
+If a coupled RM object is shown semiregular, compare its compatible infinitesimal K-classes with the unique `D`-fixed formal lift from
 [`formal-k-theory.md`](formal-k-theory.md).
 
-A match would connect the explicit geometric object to the formal rigidity route.
+A match would connect the explicit geometric route to the formal-rigidity route.
 
 ---
 
-## Problem 7 — independent hypersurface route
+## Problem 9 — independent hypersurface route
 
-For a primitive Hodge class `alpha`, define
-
-\[
-\mathcal D_L
-=\operatorname{span}\{\Gamma_Y(C_Y):Y\in|L^d|,\ d\ge1\}.
-\]
-
-The decisive statement remains
-
-\[
-H^{2n}(X,\mathbf Q)_{\mathrm{prim}}\cap H^{n,n}
-\subseteq\mathcal D_L.
-\]
-
-For nodal `Y`, this is the construction of a relation among vanishing cycles whose defect class pairs nontrivially with `alpha`.
-
-This route is logically independent of the RM secant-object program and remains available if the final two generalized Atiyah directions prove impossible to cancel.
+The vanishing-cycle/defect route remains logically independent and should be retained as a fallback if the RM secant construction ultimately encounters a global obstruction.
 
 ---
 
-# Immediate next experiment
+# Immediate next experiments
 
-The highest-value next calculation is now extremely specific:
+In order:
 
-\[
-\boxed{
-\text{construct a local/derived coupling which kills }
-P_{01}-qB_{01}
-\text{ and }
-P_{23}-qB_{23}.
-}
-\]
+1. **prove or disprove maximal rank for three Kodaira--Spencer classes;**
+2. compute the space
+   \[
+   H^1(\mathcal E\otimes\mathcal E\otimes K_D^{-1})
+   \]
+   and search for an extension with nonzero `8N x 8N` determinant;
+3. compute `Phi(i_*W_D)[2]` once such a bundle is found;
+4. only then reintroduce the `q=1` Fourier symmetry and finite-isogeny equivariance.
 
-A candidate which fails either one is discarded. A candidate which kills both, preserves `Ext^{<0}=0`, and retains a usable finite symmetry would cross the main remaining infinitesimal barrier in the real-multiplication route.
+A failure at step 1 or 2 is immediately falsifiable. A success at both would remove the last known local obstruction mechanism from the RM program.
