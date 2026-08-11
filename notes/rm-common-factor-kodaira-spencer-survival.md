@@ -1,198 +1,152 @@
-# A common-factor Kodaira--Spencer construction forcing a surviving middle extension
+# Common-factor Kodaira--Spencer tensors: an ambient cancellation and its tangent correction
 
-> **Status.** This note removes the new risk that the final extension space of the Kodaira--Spencer divisor bundle might vanish. For a special but natural choice of the three defining Kodaira--Spencer classes, a nonzero rank-one deformation class lifts explicitly to `H^1(Lambda^2 E tensor K_D^{-1})`. The remaining compatibility condition is that the same four-dimensional common-factor subspace have rank at least three under the twisted map `rho_P`.
+> **Status.** This note records a useful common-factor cancellation in the ambient polarized deformation space, but corrects an earlier overstatement: the cancellation does **not** by itself prove that the corresponding class survives in `H^1(Lambda^2 E tensor K_D^{-1})`. The reason is that a polarized deformation tensor is represented naturally in `H^1(T_X|_D)`; lifting it to an actual `T_D`-valued Dolbeault representative requires a normal correction governed by the theta gradient/Hessian. Controlling that correction is now the key bridge problem.
 
 ## 1. Polarized deformation tensors
 
 Let `D=Theta` be a smooth principal theta divisor in a principally polarized abelian fourfold `X`.
 
-Use the polarization to identify the ten-dimensional space of infinitesimal ppav deformations with
+Via the polarization, the ten-dimensional infinitesimal ppav deformation space is
 
 \[
-H^1(T_D)\cong Sym^2 W,
+H^1(T_D)\cong Sym^2W,
 \qquad \dim W=4.
 \]
 
-Concretely, after choosing coordinates, write
+More precisely, the tangent-normal sequence
 
 \[
-D_{ij}=\bar z_j\otimes\partial_{z_i}.
+0\to T_D\to T_X|_D\to K_D\to0
 \]
 
-A symmetric tensor `v odot w` is represented by the corresponding symmetric combination of the `D_ij`.
-
-Fix a nonzero vector
+induces an injection
 
 \[
-v\in W.
+H^1(T_D)\hookrightarrow H^1(T_X|_D)
+\cong H^1(O_D)\otimes H^0(T_X),
 \]
 
-Define
+whose image is the symmetric-tensor subspace.
+
+Choose ambient coordinates and write
 
 \[
-\boxed{
-\xi=v^2\in Sym^2W
-}
+D_{ij}=\bar z_j\otimes\partial_{z_i}
 \]
 
-and the four-dimensional common-factor subspace
+for the corresponding constant `(0,1)`-forms with values in `T_X|_D`.
+
+Fix `0 != v in W` and set
 
 \[
-\boxed{
-L_v=v\cdot W
-=\{v\odot w:w\in W\}\subset Sym^2W.
-}
+\xi=v^2,
+\qquad
+L_v=v\cdot W\subset Sym^2W,
+\qquad \dim L_v=4.
 \]
 
-## 2. Pointwise wedge annihilation
+## 2. Exact ambient common-factor cancellation
 
-Choose coordinates with `v=partial_1`. Then
+Choose coordinates with `v=partial_1`. Then the ambient representative of
 
 \[
-\xi=D_{11}
-=\bar z_1\otimes\partial_1.
+\xi=v^2
 \]
 
-For a basis vector `partial_j`, the corresponding element of `L_v` is
+is
 
 \[
-e_j=D_{1j}+D_{j1}
-=\bar z_j\otimes\partial_1
-+\bar z_1\otimes\partial_j
+D_{11}=\bar z_1\otimes\partial_1.
 \]
 
-(up to an irrelevant scalar when `j=1`).
-
-In the differential graded algebra of `(0,*)`-forms with values in polyvector fields,
+For `w=partial_j`, the ambient representative of `v odot w` is
 
 \[
-\xi\wedge e_j=0
-\]
-
-**pointwise**:
-
-- the first summand contains `partial_1 wedge partial_1`;
-- the second contains `bar z_1 wedge bar z_1`.
-
-By linearity,
-
-\[
-\boxed{
-\xi\wedge e=0
-\qquad\text{for every }e\in L_v.
-}
-\]
-
-The same common-factor argument gives
-
-\[
-\boxed{
-\xi\wedge e\wedge f=0
-\qquad\text{for every }e,f\in L_v.
-}
-\]
-
-The latter identity is also immediate by expanding in the chosen coordinates: a nonzero antiholomorphic wedge would have to select the terms with distinct `bar z` factors, but those terms all carry the holomorphic vector `partial_1`, so the holomorphic wedge vanishes.
-
-## 3. Put the three defining classes in `L_v`
-
-Choose three linearly independent classes
-
-\[
-e_1,e_2,e_3\in L_v
-\]
-
-and define the rank-six Kodaira--Spencer bundle
-
-\[
-0\to U\otimes O_D\to E\to Omega_D^1\to0,
-\qquad U\cong C^3,
-\]
-
-with extension class
-
-\[
-e=u_1\otimes e_1+u_2\otimes e_2+u_3\otimes e_3.
-\]
-
-A smooth splitting identifies the Dolbeault operator with
-
-\[
-\bar\partial_E
+D_{1j}+D_{j1}
 =
-\begin{pmatrix}
-\bar\partial & e\\
-0 & \bar\partial
-\end{pmatrix}.
+\bar z_j\otimes\partial_1
++
+\bar z_1\otimes\partial_j.
 \]
 
-The induced Dolbeault operator on `Lambda^2 E` is the derivation obtained from this operator. In particular, on the top associated-graded term
-
-\[
-Lambda^2Omega_D^1\otimes K_D^{-1}\cong T_D
-\]
-
-the only off-diagonal term is linear in `e` and is given by contraction/wedge with the three classes `e_a`.
-
-## 4. The rank-one class lifts as an actual cocycle
-
-Represent `xi=v^2` by the restriction to `D` of its translation-invariant ambient Dolbeault tensor.
-
-Lift it in the smooth splitting of
-
-\[
-Lambda^2E\otimes K_D^{-1}
-\]
-
-by putting zero in the lower filtration pieces.
-
-Because
-
-\[
-e_a\wedge\xi=0
-\]
-
-pointwise for all three `a`, the off-diagonal Dolbeault term vanishes identically. Therefore the lifted tensor is already `bar partial_E`-closed; no correction term or secondary obstruction is required.
-
-Hence `xi` determines a class
+In the ambient Dolbeault polyvector algebra one has pointwise
 
 \[
 \boxed{
-\widetilde\xi
-\in
-H^1(D,Lambda^2E\otimes K_D^{-1}).
+D_{11}\wedge(D_{1j}+D_{j1})=0.
 }
 \]
 
-It is nonzero: its image under the natural projection to
+Indeed the first term has repeated holomorphic vector `partial_1`, while the second has repeated antiholomorphic form `bar z_1`.
 
-\[
-H^1(T_D)
-\]
-
-is the original nonzero class `xi`.
-
-Thus
+Similarly, for any `e,f in L_v`,
 
 \[
 \boxed{
-H^1(D,Lambda^2E\otimes K_D^{-1})\ne0
+\xi_{amb}\wedge e_{amb}\wedge f_{amb}=0.
 }
 \]
 
-for every triple `e_1,e_2,e_3` contained in one common-factor subspace `L_v`.
+Thus the common-factor subspace is genuinely isotropic **after passage to the ambient bundle** `T_X|_D`.
 
-This explicitly passes the falsification test from `rm-middle-extension-cohomology-filter.md`.
+## 3. Why this does not yet prove tangent-bundle vanishing
 
-## 5. The first spectral-sequence differential
+The crucial subtlety is that the constant tensors above are not pointwise sections of `T_D`.
 
-The same calculation identifies the first differential of the filtration for an arbitrary test class
+A class
 
 \[
-\eta\in H^1(T_D).
+q\in H^1(T_D)
 \]
 
-It is
+maps to its symmetric constant tensor in `H^1(T_X|_D)`, but an actual Dolbeault representative with values in `T_D` must have its normal component cancelled.
+
+From
+
+\[
+0\to T_D\to T_X|_D\xrightarrow{d\theta}K_D\to0,
+\]
+
+the normal part of a constant ambient tensor is measured by the theta gradient. Solving it away introduces a correction depending on derivatives of the gradient, hence on the Hessian/second fundamental form of the theta divisor.
+
+Consequently
+
+\[
+\xi_{amb}\wedge e_{amb}=0
+\]
+
+does **not** imply without further work that
+
+\[
+\xi\wedge e=0
+\quad\text{in }H^2(\Lambda^2T_D).
+\]
+
+The difference lies precisely in the kernel of the map from tangent polyvectors to ambient polyvectors.
+
+This is the point missed in the earlier version of this note.
+
+## 4. The filtration differential remains correct abstractly
+
+Let
+
+\[
+0\to U\otimes O_D\to E\to\Omega_D^1\to0
+\]
+
+be defined by three classes
+
+\[
+e_1,e_2,e_3\in H^1(T_D).
+\]
+
+The filtration of `Lambda^2 E tensor K_D^{-1}` has top graded term
+
+\[
+\Lambda^2\Omega_D^1\otimes K_D^{-1}\cong T_D.
+\]
+
+Its first spectral-sequence differential is canonically
 
 \[
 \boxed{
@@ -201,98 +155,96 @@ d_1(\eta)
 (e_1\wedge\eta,
  e_2\wedge\eta,
  e_3\wedge\eta)
-\in
-H^2(Lambda^2T_D)^{\oplus3}.
 }
 \]
 
-The operation is symmetric in the two degree-one deformation classes: interchanging them changes sign both in the Dolbeault wedge and in the wedge of tangent vectors.
-
-For the common-factor class `xi=v^2`, every component is zero already before passing to cohomology.
-
-## 6. The outer-rank problem and the extension-survival problem merge
-
-The three classes defining `E` still have to satisfy Milestone A. For a nontrivial degree-zero twist `P`, write
+with values in
 
 \[
-\rho_P:H^1(T_D)\to H^1(Omega_D^2\otimes P).
+H^2(\Lambda^2T_D)^{\oplus3}.
 \]
 
-The common-factor construction succeeds if and only if one can find `v` and `P` such that
+This formula is intrinsic. What remains unknown is whether, for the **tangent-corrected** representatives of
+
+\[
+\eta=\xi=v^2,
+\qquad e_a\in L_v,
+\]
+
+the three classes `e_a wedge xi` actually vanish.
+
+## 5. The normal correction is another Hessian problem
+
+The tangent correction can be described through the same normal sequence that produced the Massey formula for
+
+\[
+\rho_P:H^1(T_D)\to H^1(\Omega_D^2\otimes P).
+\]
+
+For a symmetric ambient tensor `q`, choose a local primitive cancelling its theta-gradient normal component. Differentiating the gradient produces the Hessian of `theta`.
+
+Thus there are now two appearances of the same second fundamental form:
+
+1. the secondary map `rho_P` from `principal-theta-massey-evaluation.md`;
+2. the correction to the ambient common-factor wedge needed to decide whether `v^2` survives in the middle extension space.
+
+This is useful: Milestone A and extension survival are not unrelated constraints. They are controlled by the same normal geometry of the theta divisor.
+
+## 6. Corrected unified target
+
+Fix `v in W` and let
+
+\[
+L_v=vW.
+\]
+
+The promising architecture is still to choose the three defining classes of `E` inside `L_v`, because the ambient common-factor algebra is maximally degenerate there.
+
+But two statements must now be proved simultaneously:
+
+### A. Outer cancellation
+
+Find `P` and three classes in `L_v` such that
 
 \[
 \boxed{
-rank\left(\rho_P|_{L_v}\right)\ge3.
+rank(\rho_P|_{L_v})\ge3.
 }
 \]
 
-Indeed, choose any three classes in `L_v` whose images are independent. Then:
+### B. Tangent corrected common-factor survival
 
-1. their Kodaira--Spencer extension cancels the three outer cohomology dimensions;
-2. the rank-one class `xi=v^2` automatically survives in the final extension space.
-
-This is substantially stronger than treating Milestones A and B independently.
-
-## 7. A natural bilinear form on the remaining eleven-dimensional space
-
-Assume now that `P` is two-torsion and put
+Show that for
 
 \[
-Y_P=H^1(D,Omega_D^2\otimes P),
-\qquad \dim Y_P=11.
+\xi=v^2
 \]
 
-The rank-one deformation `xi` induces the standard infinitesimal-variation map
+the Hessian correction does not destroy the ambient cancellation, i.e. that the intrinsic classes
+
+\[
+e_a\wedge\xi
+\in H^2(\Lambda^2T_D)
+\]
+
+vanish for the chosen three `e_a`.
+
+If both hold, then `xi` survives the first filtration differential. One must then check the remaining higher filtration obstruction, although the ambient triple-wedge identity strongly suggests that its principal symbol also vanishes.
+
+## 7. Why the correction is productive rather than fatal
+
+The failure of the naive pointwise argument identifies exactly what needs to be computed: the **second fundamental form of the theta embedding** applied to the common-factor tensors.
+
+De Jong's bordered-Hessian invariant detects where that second fundamental form has full rank three, while Pareschi's Gaussian/Fourier formalism controls precisely the passage from the normal sequence to the relative Fourier transform.
+
+Therefore the next calculation is no longer an abstract extension-space search. It is a concrete comparison of two Hessian corrections:
 
 \[
 \boxed{
-B_{\xi,P}:Y_P\longrightarrow Y_P^*,
+\text{the Hessian term in }\rho_P|_{L_v}
+\quad\text{versus}\quad
+\text{the Hessian term in }d_1(v^2).
 }
 \]
 
-obtained by cup product with `xi` and contraction of forms. By Serre duality this is a symmetric bilinear form on `Y_P`.
-
-The three-dimensional subspace
-
-\[
-S=\rho_P(\langle e_1,e_2,e_3\rangle)
-\]
-
-is expected, and by Higgs-field integrability is forced at the associated-graded level, to lie in the radical of `B_{xi,P}` whenever `e_a wedge xi=0`.
-
-Therefore the most economical final target is now
-
-\[
-\boxed{
-rank(B_{\xi,P})=8
-\quad\text{and}\quad
-rad(B_{\xi,P})=S.
-}
-\]
-
-If this holds, the form descends to a nondegenerate symmetric form on
-
-\[
-Y_P/S,
-\qquad \dim(Y_P/S)=8,
-\]
-
-which is exactly the middle pairing required by the final extension `W_D`.
-
-The inclusion `S subset rad(B_{xi,P})` should be written carefully through the Higgs/Yoneda formalism before it is used as a theorem; the pointwise common-factor wedge identity is the underlying mechanism.
-
-## 8. New unified target
-
-The previous two separate milestones have been replaced by the following highly structured problem:
-
-> Find `v` and a nontrivial two-torsion `P` such that
-> \[
-> rank(rho_P|_{vW})=3
-> \]
-> and the rank-one IVHS form
-> \[
-> B_{v^2,P}
-> \]
-> has rank `8`.
-
-The dimensions `4 -> 3` and `11 -> 8` are complementary, suggesting that the two statements may be different faces of one exact Hessian/Gaussian-map calculation.
+A cancellation identity between them would restore the common-factor construction rigorously; a nonzero correction would reject it immediately.
