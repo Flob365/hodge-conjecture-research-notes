@@ -2,244 +2,270 @@
 
 ## Current state of the attack
 
-The real-multiplication route has now become much more sharply constrained.
+The real-multiplication route is now concentrated on a **smooth principal theta divisor** and two finite-dimensional rank problems.
 
 Established inside these notes:
 
-1. the target RM secant Chern character is explicit;
-2. its infinitesimal Chern-action map on `HT^2` has rank exactly `20` and kernel exactly `8` dimensional;
-3. six kernel directions are ordinary RM deformations;
-4. the remaining two are mixed `B`-field/bivector directions;
-5. scalar semihomogeneous monads cannot provide the previously targeted large common torsion symmetry;
-6. ordinary curve elementary transforms cannot kill both mixed directions locally;
-7. ordinary divisor--curve point gluing of the type used in Markman's explicit `E'` candidate also cannot kill both mixed directions in the generic smooth/reduced local model;
-8. the `q=1` specialization has an exact Fourier symmetry: the secant class is Fourier-even while the two mixed directions are Fourier-odd;
-9. a new Kodaira--Spencer vector-bundle construction keeps the pure divisor Chern character while reducing the generic Fourier cohomology profile from `3,11,11,3` to one square `8N x 8N` determinant.
+1. the RM secant Chern character and its generalized Chern-action map are explicit;
+2. that action has rank `20` and an `8`-dimensional kernel: six ordinary RM directions plus two mixed `B`/bivector directions;
+3. scalar semihomogeneous monads fail the earlier large-symmetry target;
+4. ordinary elementary transforms along curves cannot kill the two mixed directions simultaneously on a simple RM fourfold;
+5. the generic divisor--curve gluing architecture of Markman's explicit `E'` has the same local obstruction;
+6. for `q=1`, the RM secant class is Fourier-even while the two mixed directions are Fourier-odd;
+7. a Kodaira--Spencer rank-six bundle on one divisor preserves the pure divisor Chern character and reduces the split `3,11,11,3` Fourier profile to a single middle determinant;
+8. in the **principal theta case** (`N=1`), the first rank problem becomes a natural `10 -> 11` map and the second becomes an `8 x 8` bilinear-form problem;
+9. the `10 -> 11` target is a twisted Jacobian module with Hilbert profile `1,11,11,1`;
+10. bounded-rank matrix theorems reduce the final determinant to rank thresholds `29` (symmetric forms) or `22` (alternating forms).
 
-The active frontier is therefore no longer the Chern character or a local curve correction. It is a **global vector-bundle/Fourier coupling problem on one smooth divisor**.
-
----
-
-## Problem 1 — the exact RM infinitesimal kernel
-
-Let
-
-\[
-\beta'=g^*\Theta-\frac q6(g^{-1})^*(\Theta^3).
-\]
-
-For nontrivial real multiplication, the exact exterior-algebra computation in
-[`rm-semiregularity-kernel.md`](rm-semiregularity-kernel.md) gives
+The active frontier is therefore no longer a search over arbitrary secant sheaves. It is:
 
 \[
 \boxed{
-\operatorname{rank}(\mu_{\beta'})=20,
-\qquad
-\dim\ker(\mu_{\beta'})=8.
+\text{(A) prove a rank-3 Hessian/Jacobian bridge,}\qquad
+\text{(B) prove one finite Petri map has sufficiently large rank.}
 }
 \]
 
-Up to the chosen HKR normalization,
+---
+
+## Problem 1 — exact RM infinitesimal kernel
+
+For
+
+\[
+\beta'=g^*\Theta-\frac q6(g^{-1})^*(\Theta^3),
+\]
+
+the exact exterior-algebra computation in
+[`rm-semiregularity-kernel.md`](rm-semiregularity-kernel.md) gives
+
+\[
+\operatorname{rank}(\mu_{\beta'})=20,
+\qquad
+\dim\ker(\mu_{\beta'})=8.
+\]
+
+Up to the chosen HKR convention,
 
 \[
 \ker(\mu_{\beta'})
 =
-\operatorname{Sym}^2(U_+)\oplus\operatorname{Sym}^2(U_-)
+Sym^2(U_+)\oplus Sym^2(U_-)
 \oplus
 \langle B_+-q^{-1}P_+,\ B_--q^{-1}P_-\rangle.
 \]
 
-For any candidate `E` with `ch(E)` a nonzero multiple of `beta'`, semiregularity on the Atiyah image is equivalent to
+For a candidate `E` with Chern character on this ray, semiregularity on the Atiyah image is equivalent to
 
 \[
-\boxed{
 \ker(at_E)=\ker(\mu_{\beta'}).
-}
 \]
-
-Thus the target remains: put all eight displayed directions into the Atiyah kernel.
 
 ---
 
-## Problem 2 — rejected local coherent couplings
+## Problem 2 — local coherent couplings already rejected
 
-### A. Elementary transforms along curves
+### Curve elementary transforms
 
-The local model
+The local calculation in
+[`rm-elementary-transform-no-go.md`](rm-elementary-transform-no-go.md)
+shows that the curve-supported `mathcal Ext^2` edge term detects the bivector obstruction before the global `B`-field can cancel it.
 
-\[
-I=(y,z)\subset k[[w,x,y,z]]/(w)
-\]
+### Markman's ordinary divisor--curve gluing
 
-has
-
-\[
-\mathcal Ext^2(I,I)\cong I/I^2.
-\]
-
-The degree-two Atiyah square detects the bivector component before the global `B`-field can cancel it. On a simple RM fourfold, both `P_+` and `P_-` cannot vanish along one transverse correcting curve.
-
-See [`rm-elementary-transform-no-go.md`](rm-elementary-transform-no-go.md).
-
-### B. Markman's divisor--curve fiber gluing
-
-At an ordinary gluing point of a smooth divisor and a smooth curve,
+The generic local model
 
 \[
-M=R/(ab,ac,ad).
+R/(ab,ac,ad)
 \]
 
-Its minimal resolution has Betti numbers `1,3,3,1`. The local Atiyah square shows that Atiyah-vanishing for a bivector `P` forces the three-dimensional curve conormal space to be isotropic for `P`.
-
-A three-plane cannot be simultaneously isotropic for both rank-two RM bivectors `P_+` and `P_-` in
-
-\[
-U_+^*\oplus U_-^*,
-\qquad \dim U_+^*=\dim U_-^*=2.
-\]
-
-Therefore the generic smooth/reduced fiber-gluing architecture of Markman's Example 11.2.7 cannot satisfy the remaining semiregularity condition.
+has the same issue: simultaneous Atiyah-vanishing for the two RM bivectors would force a three-dimensional curve conormal space to project to dimension at most one in each of two two-dimensional RM blocks, which is impossible.
 
 See [`markman-eprime-local-gluing-obstruction.md`](markman-eprime-local-gluing-obstruction.md).
 
-**Important:** this rejects a local architecture, not Question 11.2.2 itself.
+These are architectural no-go results, not a rejection of Markman's general question.
 
 ---
 
-## Problem 3 — the surviving pure-divisor strategy
+## Problem 3 — pure-divisor Kodaira--Spencer bundle
 
-Let `D` be a smooth sufficiently positive divisor on the abelian fourfold and put
-
-\[
-K_D=\mathcal O_D(D).
-\]
-
-The old split bundle
+Let `D` be a smooth ample divisor and put `K_D=O_D(D)`. Choose three deformation classes and form
 
 \[
-V_D=3\mathcal O_D\oplus\Omega_D^1\oplus\Omega_D^2\oplus3K_D
+0\to O_D^{\oplus3}\to E\to\Omega_D^1\to0.
 \]
 
-satisfies
+Since `rank(E)=6` and `det(E)=K_D`,
 
 \[
-\operatorname{ch}(i_*V_D)=12[D],
+\Lambda^5E\cong E^\vee\otimes K_D.
 \]
 
-but its generic degree-zero-twist cohomology profile is
+Moreover
 
 \[
-(3,11,11,3)N.
+[E]+[\Lambda^5E]
+=3[O_D]+[\Omega_D^1]+[\Omega_D^2]+3[K_D],
 \]
 
-### Kodaira--Spencer replacement
-
-Choose three first-order deformation classes and form
+so
 
 \[
-0\to\mathcal O_D^{\oplus3}\to\mathcal E\to\Omega_D^1\to0.
+ch\bigl(i_*(E\oplus\Lambda^5E)\bigr)=12[D].
 \]
 
-Then
+If the first three connecting maps have maximal rank, the generic twisted cohomology profile becomes
 
 \[
-0\to\Omega_D^2\to\Lambda^5\mathcal E\to K_D^{\oplus3}\to0
+(0,8,8,0)N.
 \]
-
-and
-
-\[
-\boxed{
-[\mathcal E]+[\Lambda^5\mathcal E]=[V_D].
-}
-\]
-
-If the three Kodaira--Spencer maps have maximal generic rank, then
-
-\[
-(h^0,h^1,h^2,h^3)
-\bigl((\mathcal E\oplus\Lambda^5\mathcal E)\otimes P\bigr)
-=(0,8,8,0)N
-\]
-
-for general `P in Pic^0(X)`.
 
 See [`rm-kodaira-spencer-divisor-bundle.md`](rm-kodaira-spencer-divisor-bundle.md).
 
 ---
 
-## Problem 4 — one final determinant
+## Problem 4 — principal theta specialization (`N=1`)
 
-Seek an extension
-
-\[
-0\to\mathcal E\to W_D\to\mathcal E^\vee\otimes K_D\to0.
-\]
-
-Its K-class remains `[V_D]`, so
+Now take `D=Theta` smooth on a principally polarized abelian fourfold. Then
 
 \[
-\operatorname{ch}(i_*W_D)=12[D].
+N=h^0(X,O_X(Theta))=1.
 \]
 
-After the outer Kodaira--Spencer cancellation, the only remaining generic map is
+For nontrivial `P in Pic^0(X)`, the first milestone becomes
 
 \[
-\partial_{\varepsilon,P}:
-H^1(\mathcal E^\vee\otimes K_D\otimes P)
-\longrightarrow
-H^2(\mathcal E\otimes P),
+\rho_P:H^1(T_D)\longrightarrow H^1(\Omega_D^2\otimes P),
 \]
 
-between two spaces of dimension `8N`.
-
-The immediate target is therefore
+with dimensions
 
 \[
-\boxed{
-\det(\partial_{\varepsilon,P})\not\equiv0.
-}
+10\longrightarrow11.
 \]
 
-This is currently the smallest surviving construction problem.
-
-### Why this target is structurally promising
-
-The two `8N` spaces are Serre-dual after `P <-> P^{-1}`. The final extension can therefore be searched for in a self-dual/symplectic or orthogonal subspace of
+Only
 
 \[
-H^1(\mathcal E\otimes\mathcal E\otimes K_D^{-1}).
+\boxed{rank(\rho_P)\ge3}
 \]
 
-A single nonzero determinant at one generic `P` proves generic acyclicity of `W_D` under degree-zero twists.
+is required: three deformation classes with independent images then produce the desired outer cancellation.
+
+The family packages over `Pic^0(X) minus {0}` into
+
+\[
+\kappa:O(-\widehat\Theta)^{\oplus10}\to G,
+\qquad rank(G)=11.
+\]
+
+The exact Fourier calculation gives
+
+\[
+c_1(G)=-3\widehat\Theta,
+\qquad
+c_2(G)=5\widehat\Theta^2.
+\]
+
+If `kappa` has generic rank ten, Thom--Porteous predicts its rank-nine locus to have class
+
+\[
+30\widehat\Theta^2.
+\]
+
+There is therefore no Chern-class obstruction to the strongest expected rank.
+
+See [`rm-principal-theta-fourier-rank.md`](rm-principal-theta-fourier-rank.md).
 
 ---
 
-## Problem 5 — multiplication-map / infinitesimal-Torelli input
+## Problem 5 — twisted Jacobian module and the Hessian bridge
 
-The first maximal-rank requirement is not an isolated phenomenon. For smooth sufficiently positive hypersurfaces in simple abelian varieties, Green's method reduces infinitesimal Torelli to multiplication maps of sections; effective bounds are known.
-
-The next technical task is to express the three Kodaira--Spencer maps in the same Jacobian-ring/multiplication formalism and prove that a general three-dimensional deformation subspace gives the required rank `3N`.
-
-### Falsifiable milestone
-
-Produce one smooth sufficiently positive `D` and three deformation classes for which
+The four theta gradients generate `K_D`. For nontrivial `P`,
 
 \[
-H^2(\Omega_D^1\otimes P)
+H^1(\Omega_D^2\otimes P)^\vee
+\cong
+coker\left[
+H^0(K_D^2P^{-1})^{\oplus4}
 \to
-H^3(\mathcal O_D^{\oplus3}\otimes P)
+H^0(K_D^3P^{-1})
+\right].
 \]
 
-is generically surjective.
+The dimensions are `60 -> 65`, with cokernel `11`. The complete twisted Koszul package has Hilbert profile
 
-If this fails, abandon the `3 -> 8` reduction.
+\[
+\boxed{1,11,11,1.}
+\]
+
+Thus Milestone A is a variation problem for a finite twisted Jacobian module.
+
+Near `P=O`, the first ambient variation dies in the derivative/Aomoto quotient. The first potentially nonzero symbol is second order. The heat equation converts ppav-period variation into second derivatives of theta, so this symbol is expected to be the second fundamental form of the theta divisor.
+
+De Jong proves that, off the ramification divisor of the Gauss map, the Hessian restricted to the tangent three-plane is nondegenerate, hence has rank `3`.
+
+### Immediate bridge lemma
+
+Prove that the first nonzero symbol of `kappa` at the projectivized tangent cone of the origin in `Pic^0` is the Gauss-map second fundamental form.
+
+If true,
+
+\[
+rank(kappa)\ge3
+\]
+
+on a dense open set and **Milestone A is solved**.
+
+See [`rm-principal-theta-jacobian-module.md`](rm-principal-theta-jacobian-module.md).
 
 ---
 
-## Problem 6 — the `q=1` Fourier symmetry
+## Problem 6 — the final middle extension
 
-Specialize to
+After A, seek
+
+\[
+0\to E\to W_D\to E^\vee\otimes K_D\to0.
+\]
+
+At a suitable two-torsion `P`, the remaining connecting map is a bilinear form on an eight-dimensional vector space `V_P`.
+
+The extension class splits into two symmetry sectors:
+
+\[
+\lambda_P^+:
+H^1(Sym^2E\,K_D^{-1})\to\Lambda^2V_P^*,
+\]
+
+\[
+\lambda_P^-:
+H^1(\Lambda^2E\,K_D^{-1})\to Sym^2V_P^*.
+\]
+
+Sharp bounded-rank matrix theorems give the sufficient criteria
+
+\[
+\boxed{rank(\lambda_P^+)\ge22}
+\]
+
+or
+
+\[
+\boxed{rank(\lambda_P^-)\ge29.}
+\]
+
+Either inequality forces the image to contain a nondegenerate form and therefore solves Milestone B.
+
+By Serre duality these become Petri/cup-product rank computations with sources of dimensions at most `28` and `36`.
+
+See [`rm-middle-extension-bounded-rank-criterion.md`](rm-middle-extension-bounded-rank-criterion.md).
+
+---
+
+## Problem 7 — `q=1` Fourier symmetry
+
+For
 
 \[
 q=1,
@@ -247,29 +273,7 @@ q=1,
 \beta=A-\frac16C^3,
 \]
 
-with
-
-\[
-A=g^*\Theta,
-\qquad
-C=(g^{-1})^*\Theta.
-\]
-
-The cohomological Poincare Fourier transform satisfies
-
-\[
-\Phi^H(A)=-\frac16C^3,
-\qquad
-\Phi^H\left(\frac16C^3\right)=-A,
-\]
-
-hence
-
-\[
-\boxed{\Phi^H(\beta)=\beta.}
-\]
-
-Meanwhile the two unresolved directions
+the cohomological Poincare Fourier transform fixes `beta`, while
 
 \[
 B_+-P_+,
@@ -279,55 +283,38 @@ B_--P_-
 
 are Fourier-odd.
 
+This remains the only surviving structural mechanism which separates the final two generalized deformation directions before semiregularity is applied.
+
 See [`rm-q1-fourier-symmetry.md`](rm-q1-fourier-symmetry.md).
 
-This remains the only mechanism found so far which separates the two mixed directions *before* the semiregularity map.
-
-### Caveat
-
-A Fourier-generated finite categorical action is outside the clean translation--tensorization special case of Perry's abelian theorem. The general equivariant theorem requires additional categorical/geometric-origin input.
+The general equivariant theorem still requires gluable-ness and geometric-origin control for the Fourier-generated finite action.
 
 ---
 
-## Problem 7 — symmetry by isogeny remains auxiliary
+## Problem 8 — relation to Markman's general RM framework
 
-The smooth-isogeny scaffold still provides arbitrarily large tensor stabilizers after pushforward, but translation/tensorization actions are cohomologically trivial on the two mixed generalized directions. They cannot simply project those directions away.
+Markman's construction of the secant space `B` applies to an abelian variety with real multiplication; his explicit coherent secant-sheaf examples are built on genus-four Jacobians. The present pure-divisor construction is deliberately aimed at producing a different `B`-secant representative on a smooth-theta RM ppav, thereby avoiding the local singular-support mechanism that obstructs the explicit Jacobian gluing model.
 
-Use isogenies for:
-
-- positivity and smoothness of divisor constructions;
-- finite symmetry after a successful local/global coupling;
-
-not as a substitute for solving the mixed Atiyah problem.
+A successful object must still satisfy the open tensor-square criterion needed to produce a nonzero Weil component after Orlov's equivalence.
 
 ---
 
-## Problem 8 — connection to formal K-theory
+## Problem 9 — later stages
 
-If a coupled RM object is shown semiregular, compare its compatible infinitesimal K-classes with the unique `D`-fixed formal lift from
-[`formal-k-theory.md`](formal-k-theory.md).
+Only after A and B should we:
 
-A match would connect the explicit geometric route to the formal-rigidity route.
-
----
-
-## Problem 9 — independent hypersurface route
-
-The vanishing-cycle/defect route remains logically independent and should be retained as a fallback if the RM secant construction ultimately encounters a global obstruction.
+1. compute `Phi(i_*W_D)[2]` and negative cross-Exts;
+2. impose the `q=1` Fourier symmetry;
+3. investigate finite isogeny equivariance;
+4. compare the resulting deformation with the formal K-theory lift;
+5. return to the independent vanishing-cycle route if the global Fourier step fails.
 
 ---
 
 # Immediate next experiments
 
-In order:
+1. **Bridge lemma:** compute the second-order symbol of `kappa` and identify it with the bordered-Hessian/Gauss differential.
+2. **Petri ranks:** once three Kodaira--Spencer directions are fixed, compute the two finite maps `lambda_P^+` and `lambda_P^-` at `N=1`.
+3. Reject the model immediately if A has rank `<3` or if every middle pairing is singular.
 
-1. **prove or disprove maximal rank for three Kodaira--Spencer classes;**
-2. compute the space
-   \[
-   H^1(\mathcal E\otimes\mathcal E\otimes K_D^{-1})
-   \]
-   and search for an extension with nonzero `8N x 8N` determinant;
-3. compute `Phi(i_*W_D)[2]` once such a bundle is found;
-4. only then reintroduce the `q=1` Fourier symmetry and finite-isogeny equivariance.
-
-A failure at step 1 or 2 is immediately falsifiable. A success at both would remove the last known local obstruction mechanism from the RM program.
+A proof of A and either rank criterion in B would move the RM program past the two currently identified global bottlenecks.
