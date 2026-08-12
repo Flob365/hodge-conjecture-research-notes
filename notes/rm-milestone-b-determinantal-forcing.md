@@ -1,216 +1,281 @@
-# Determinantal forcing for Milestone B
+# Milestone B: determinantal forcing in the two-torsion `7+4` decomposition
 
-> **Status.** This note isolates a purely projective-geometric mechanism which would force Milestone B once one lower-rank exclusion is proved. It is rigorous as a conditional statement. The missing input is the **Rank-8 lemma**: every nonzero central twisted-IVHS operator `T_Q` must have rank at least eight.
+> **Status.** This note supersedes the older `P^9 in P^65` argument, which assumed rank ten for the first twisted Hodge block at two-torsion. The correct two-torsion geometry has a rigorous `7+4` parity decomposition. Conditional on three much sharper statements -- surjectivity of the first block onto the seven-dimensional parity piece, exclusion of visible rank at most three, and existence of one nonsingular normal form -- projective geometry forces exactly the rank-eight central operator required by Milestone B.
 
-## 1. Linear system of central operators
+## 1. Two-torsion decomposition
 
-Let `D=Theta` be a smooth principal theta divisor in an abelian fourfold and choose a nontrivial two-torsion twist `P` in the Milestone-A open set.
-
-Put
+Let `D=Theta` be a smooth principal theta divisor in an abelian fourfold and choose
 
 \[
-H_P:=H^1(D,\Omega_D^2\otimes P),
-\qquad \dim H_P=11.
+0\ne P\in Pic^0(X)[2].
 \]
 
-Serre duality and `P=P^{-1}` identify
+By `rm-two-torsion-parity-splitting.md`, inversion gives
 
 \[
-H^2(D,\Omega_D^1\otimes P)\cong H_P^*.
+H_P:=H^1(D,\Omega_D^2\otimes P)
+=H_7\oplus H_4,
 \]
 
-For a polarized deformation
+with
 
 \[
-Q\in V:=T_{[X,\Theta]}\mathcal A_4,
-\qquad \dim V=10,
+\dim H_7=7,
+\qquad
+\dim H_4=4.
 \]
 
-the central block of the twisted IVHS is a symmetric map
+The first ppav Hodge block
 
 \[
-T_Q:H_P\longrightarrow H_P^*.
+\rho_P:V\to H_P,
+\qquad
+V=T_{[X,Theta]}A_4,
+\quad \dim V=10,
+\]
+lands entirely in `H_7`.
+
+Assume the expected generic two-torsion rank statement
+
+\[
+\boxed{Im(rho_P)=H_7.}
 \]
 
-Thus there is a linear map
+Then
+
+\[
+\boxed{W:=ker(rho_P)\text{ has dimension }3,}
+\]
+
+and
+
+\[
+\overline V:=V/W\cong H_7
+\]
+has dimension seven.
+
+## 2. The central operator is block diagonal
+
+At two-torsion, Serre duality identifies the central twisted IVHS block with a symmetric bilinear form
+
+\[
+T_Q:H_P\to H_P^*.
+\]
+
+The deformation tensor `Q` is invariant under inversion, so `T_Q` preserves inversion eigenspaces. Thus
 
 \[
 \boxed{
-T:V\longrightarrow Sym^2H_P^*.
+T_Q=B_Q\oplus D_Q,
 }
 \]
 
-Milestone A gives an injective first Hodge block
+where
 
 \[
-\rho_P:V\hookrightarrow H_P.
+B_Q:H_7\to H_7^*,
+\qquad
+D_Q:H_4\to H_4^*
 \]
+are symmetric forms of sizes `7 x 7` and `4 x 4`.
 
-Write
+Higgs integrability gives
 
 \[
-H:=\rho_P(V)\subset H_P,
-\qquad \dim H=10.
+T_Q\rho_P(R)=T_R\rho_P(Q)
 \]
+for all `Q,R in V`.
 
-So `H` is a hyperplane.
-
-## 2. The incidence variety with a three-plane in the kernel
-
-Let `n=11`. In
+If `w in W`, then `rho_P(w)=0`, hence
 
 \[
-\mathbf P(Sym^2H_P^*)\cong\mathbf P^{65}
-\]
-consider the incidence variety
-
-\[
-Y_H=
-\left\{
-[A]:\exists K\in Gr(3,H)\text{ with }K\subseteq\ker A
-\right\}.
-\]
-
-For a fixed `K`, a symmetric form vanishing on `K` is a symmetric form on the eight-dimensional quotient `H_P/K`. Hence the fiber over `K` is
-
-\[
-\mathbf P(Sym^2(H_P/K)^*)\cong\mathbf P^{35}.
-\]
-
-Since
-
-\[
-\dim Gr(3,H)=3(10-3)=21,
-\]
-we obtain
-
-\[
-\boxed{
-\dim Y_H=21+35=56.
-}
+T_w(H_7)=0.
 \]
 
 Therefore
 
 \[
 \boxed{
-codim_{\mathbf P^{65}}Y_H=9.}
+B_w=0\quad(w\in W).
+}
 \]
 
-The map from the projective bundle over `Gr(3,H)` is proper, so `Y_H` is closed.
-
-## 3. Every projective `P^9` meets `Y_H`
-
-Assume the central map `T` is injective. Then
+So the visible block factors through the seven-dimensional quotient:
 
 \[
-L:=\mathbf P(T(V))\cong\mathbf P^9
-\subset\mathbf P^{65}.
+\boxed{
+B:\overline V\longrightarrow Sym^2H_7^*.
+}
 \]
 
-The projective dimension theorem gives
+The normal block, on the other hand, can be varied by adding elements of `W` without changing `B_Q`.
+
+## 3. The visible family is a system of polar quadrics of a cubic
+
+Use `rho_P` to identify `overline V` with `H_7`. Integrability becomes
 
 \[
-\dim L+\dim Y_H=9+56=65.
+B_q(r)=B_r(q),
+\qquad q,r\in H_7.
+\]
+
+Together with symmetry of each `B_q`, this means there is a symmetric cubic tensor
+
+\[
+\boxed{
+C\in Sym^3H_7^*
+}
+\]
+such that
+
+\[
+\boxed{
+B_q(r,s)=C(q,r,s).
+}
+\]
+
+Thus the projective six-plane
+
+\[
+\mathbf P(B(H_7))\subset\mathbf P(Sym^2H_7^*)=\mathbf P^{27}
+\]
+is the family of polar quadrics of one cubic hypersurface in `P(H_7)=P^6`.
+
+This is the precise sense in which a rank-four quadrics problem appears in the present construction.
+
+## 4. Projective geometry forces a visible rank-at-most-four form
+
+The symmetric determinantal variety
+
+\[
+Sigma_{\le4}^{(7)}
+=\{[A]\in P(Sym^2C^7):rank(A)\le4\}
+\]
+has codimension
+
+\[
+\binom{7-4+1}{2}=\binom42=6
+\]
+in `P^27`, hence dimension
+
+\[
+21.
+\]
+
+Assume the visible linear map
+
+\[
+B:H_7\to Sym^2H_7^*
+\]
+is injective. Then
+
+\[
+L:=P(B(H_7))\cong P^6.
+\]
+
+Since
+
+\[
+\dim L+\dim Sigma_{\le4}^{(7)}=6+21=27,
+\]
+the projective dimension theorem gives
+
+\[
+\boxed{L\cap Sigma_{\le4}^{(7)}\ne\varnothing.}
+\]
+
+Therefore there is a nonzero visible direction `q_0` with
+
+\[
+\boxed{rank(B_{q_0})\le4.}
+\]
+
+This part is unconditional once `B` is injective.
+
+## 5. Rank at most three is the only visible danger
+
+The next symmetric determinantal locus
+
+\[
+Sigma_{\le3}^{(7)}
+\]
+has codimension
+
+\[
+\binom{7-3+1}{2}=\binom52=10
+\]
+in `P^27`.
+
+A general `P^6` avoids it. Our `P^6` is not arbitrary -- it is the polar system of the geometric cubic `C` -- so avoidance must be proved.
+
+The exact needed statement is:
+
+> **Visible rank-four lemma.** The polar system of the two-torsion twisted-IVHS cubic contains no nonzero quadric of rank at most three.
+
+Combined with Section 4, this forces a direction `q_0` satisfying
+
+\[
+\boxed{rank(B_{q_0})=4.}
 \]
 
 Hence
 
 \[
-\boxed{L\cap Y_H\neq\varnothing.}
+\dim ker(B_{q_0})=3.
 \]
 
-Thus there is a nonzero deformation direction `Q` such that
+## 6. The normal `4 x 4` block can be adjusted independently
+
+Lift `q_0` to some `Q_0 in V`. Every other lift has the form
 
 \[
-T_Q
+Q_0+w,
+\qquad w\in W.
 \]
-has a three-dimensional kernel subspace contained in `H=im(rho_P)`.
 
-Since the existence of such a `K` forces
+Because `B_w=0`, all these lifts have the same visible block:
 
 \[
-rank(T_Q)\le8,
+B_{Q_0+w}=B_{Q_0}.
 \]
-projective geometry alone gives a rank-at-most-eight candidate.
 
-## 4. Why rank seven is the only remaining danger
-
-The projective symmetric determinantal variety
+Their normal blocks form an affine three-parameter family
 
 \[
-\Sigma_{\le r}
-=\{[A]:rank(A)\le r\}
-\subset\mathbf P(Sym^2\mathbf C^{11})
+D_{Q_0}+D(W)\subset Sym^2H_4^*.
 \]
-has codimension
+
+The second required statement is:
+
+> **Normal nondegeneracy lemma.** The determinant polynomial
+> \[
+> w\longmapsto det(D_{Q_0+w})
+> \]
+> is not identically zero on the three-dimensional space `W`.
+
+Then choose `w` for which
 
 \[
-\binom{11-r+1}{2}.
+\boxed{rank(D_{Q_0+w})=4.}
 \]
 
-For `r=7`,
+The full central operator has rank
 
 \[
-\boxed{codim\Sigma_{\le7}=\binom52=10,}
+rank(T_{Q_0+w})
+=rank(B_{q_0})+rank(D_{Q_0+w})
+=4+4=8.
 \]
-so
+
+Its kernel is exactly the three-dimensional visible kernel:
 
 \[
-\dim\Sigma_{\le7}=55.
+\boxed{ker(T_{Q_0+w})=ker(B_{q_0})\subset H_7.}
 \]
 
-Notice that `Sigma_{<=7}` is contained in `Y_H`: a kernel of dimension at least four meets any hyperplane `H` in dimension at least three.
+## 7. Milestone B follows
 
-Therefore the boundary
-
-\[
-Y_H\setminus\{rank=8,\ ker\subset H\}
-\]
-contains the full rank-at-most-seven locus.
-
-A **general** projective `P^9` in `P^65` avoids `Sigma_{<=7}` because
-
-\[
-9+55=64<65.
-\]
-
-For our geometric `P^9`, however, this avoidance must be proved rather than assumed.
-
-## 5. Conditional solution of Milestone B
-
-Suppose the following two statements hold:
-
-1. the central map
-   \[
-   T:V\to Sym^2H_P^*
-   \]
-   is injective;
-2. every nonzero `Q` satisfies
-   \[
-   \boxed{rank(T_Q)\ge8.}
-   \]
-
-Then Section 3 produces a nonzero `Q_0` with `rank(T_Q0)<=8` and with a three-plane
-
-\[
-K\subset H\cap ker(T_{Q_0}).
-\]
-
-The lower bound forces
-
-\[
-rank(T_{Q_0})=8,
-\qquad \dim ker(T_{Q_0})=3.
-\]
-
-Hence necessarily
-
-\[
-ker(T_{Q_0})=K\subset H.
-\]
-
-Since `rho_P:V -> H` is an isomorphism onto `H`, choose unique independent
+Assume additionally the two-torsion rank lemma `Im(rho_P)=H_7`. Then every vector in the visible kernel has a unique lift modulo `W` to a ppav deformation direction. Choose independent
 
 \[
 Q_1,Q_2,Q_3\in V
@@ -218,58 +283,65 @@ Q_1,Q_2,Q_3\in V
 with
 
 \[
-rho_P(\langle Q_1,Q_2,Q_3\rangle)=K.
+rho_P(\langle Q_1,Q_2,Q_3\rangle)
+=ker(B_{q_0}).
 \]
 
-By symmetry of `T_Q0`, its image is the annihilator of `K`, so the complex
+Use these three classes to define the rank-six Kodaira--Spencer bundle
 
 \[
-\boxed{
-\mathbf C^3
-\xrightarrow{\rho_P}
-H_P
-\xrightarrow{T_{Q_0}}
-H_P^*
-\xrightarrow{\rho_P^*}
-(\mathbf C^3)^*
-}
+0\to O_D^3\to E\to\Omega_D^1\to0.
 \]
 
-is exact.
+The lifted central class `Q_0+w` lies in the surviving extension space precisely because its central operator kills those three first-block images. Its middle map on the `(0,8,8,0)` cohomology is the quotient of `T_{Q_0+w}` by the three-dimensional kernel and cokernel. Since the full rank is eight, that quotient map is an isomorphism.
 
-This is precisely the cohomological exactness required for the final extension bundle `W_D`. Therefore **Milestone B follows**.
-
-## 6. The new decisive lemma
-
-The remaining target is now exceptionally sharp:
-
-> **Rank-8 lemma.** For a smooth principal theta divisor `D` and a suitable nontrivial two-torsion `P`, every nonzero polarized deformation `Q` has
-> \[
-> rank(T_Q)\ge8.
-> \]
-
-This lemma also implies injectivity of `T`, so it subsumes both missing assumptions in Section 5.
-
-## 7. Gauss-cover form of the Rank-8 lemma
-
-By `rm-gauss-pushforward-splitting.md`, the finite Gauss map
+Therefore the final extension
 
 \[
-\gamma:D\to P^3
+0\to E\to W_D\to E^\vee K_D\to0
 \]
-satisfies
+has generically acyclic twisted cohomology, and **Milestone B is solved**.
+
+## 8. The three remaining lemmas
+
+The current Milestone-B program has therefore been reduced to exactly three geometric statements:
+
+1. **Two-torsion rank lemma**
+   \[
+   rank(rho_P)=7.
+   \]
+
+2. **Visible rank-four lemma**
+   
+   no nonzero polar quadric `B_q` has rank at most three.
+
+3. **Normal nondegeneracy lemma**
+   
+   the three-dimensional invisible space `W` is not mapped entirely into the determinant hypersurface of singular `4 x 4` symmetric forms.
+
+The first statement is constrained by inversion parity and strongly supported by theta-series calculations. The latter two are also satisfied numerically on an explicit real-multiplication period matrix for `Q(sqrt(5))`.
+
+## 9. Generic cubic dimension check
+
+The visible rank-four lemma is generically reasonable for a cubic in seven variables. For fixed nonzero `q`, contraction
 
 \[
-\gamma_*P
-\cong
-O(-1)\oplus O(-2)^{11}\oplus O(-3)^{11}\oplus O(-4).
+Sym^3H_7^*\to Sym^2H_7^*,
+\qquad C\mapsto C(q,-,-),
 \]
+is surjective. The locus of rank-at-most-three quadrics has codimension ten in `P^27`. Allowing `q in P^6` lowers the expected codimension by six, so cubics admitting some rank-at-most-three polar form a proper subset of expected codimension four in `P(Sym^3H_7^*)`.
 
-The source and target of `T_Q` are exactly the multiplicity spaces of the eleven `O(-2)` and eleven `O(-3)` summands.
+Thus a general cubic has a rank-four polar by Section 4 but no rank-at-most-three polar. What remains is to prove that the geometric cubic arising from the RM theta family is not trapped in this special codimension-four locus.
 
-Thus the Rank-8 lemma can be attacked as a statement about the infinitesimal variation of the middle two summands of this finite Gorenstein Gauss-cover module. The rank-one candidate `Q=v^2` remains particularly important: proving
+## 10. Numerical RM certificate to turn into a proof
 
-\[
-rank(T_{v^2})=8
-\]
-for one generic `v` would already supply the desired point if its kernel lies in `H`; the uniform Rank-8 lemma would give the clean projective-forcing proof above.
+On an explicit period matrix with real multiplication by `Q(sqrt(5))`, theta-series experiments show:
+
+- `rank(rho_P)=7` at a nonzero two-torsion twist;
+- `dim W=3`;
+- each tested basis vector of `W` gives a central operator of rank exactly four, supported on the normal block;
+- the visible `P^6` contains a form of rank exactly four;
+- after adding an invisible direction, the normal block can be made invertible without changing the visible rank-four block;
+- the resulting full central operator has rank eight and three-dimensional kernel contained in `H_7`.
+
+These computations are evidence, not proof. They identify exactly which modular determinants/minors should be certified algebraically next.
